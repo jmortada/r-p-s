@@ -7,3 +7,9 @@ function getComputerChoice () {
 }
 
 console.log(getComputerChoice())
+
+let message = "enter rock paper or scissors"
+let ans = ""
+function getHumanChoice () {
+    ans = prompt(message);
+}
