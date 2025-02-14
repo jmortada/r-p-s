@@ -14,28 +14,47 @@ function getHumanChoice () {
     return prompt(message);
 }
 
-let humanScore = 0;
-let computerScore = 0;
 
-function playRound (humanChoice , computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
 
-    if (humanChoice === computerChoice)
-        console.log("it is a tie");
-    return;
-
-    let winCon = {
-        paper : "rock",
-        rock : "scissors",
-        scissors : "paper"
+function playGame () {
+    let humanScore = 0;
+    let computerScore = 0;
+    
+    function playRound (humanChoice , computerChoice) {
+        humanChoice = humanChoice.toLowerCase();
+    
+        if (humanChoice === computerChoice){
+            console.log("it is a tie");
+        return;
+        }
+        let winCon = {
+            paper : "rock",
+            rock : "scissors",
+            scissors : "paper"
+        }
+    
+        if (winCon[humanChoice] === computerChoice){
+            console.log("You Win! " +humanChoice+ " beats " +computerChoice );
+            humanScore++;
+        }
+        else{
+            console.log("You Lose! " +computerChoice+ " beats " +humanChoice);
+            computerScore++;
+        }
     }
 
-    if (winCon[humanChoice] === computerChoice){
-        console.log("You Win! " +humanChoice+ " beats " +computerChoice );
-        humanScore++;
+    for (let i = 1 ; i <= 5 ; i++){
+        let c = getComputerChoice();
+        let h = getHumanChoice();
+        playRound(h , c);
     }
-    else{
-        console.log("You Lose! " +computerChoice+ " beats " +humanChoice);
-        computerScore++;
-    }
+
+    if (humanScore > computerScore)
+        console.log("You Won The Game!");
+    else if (computerScore > humanScore)
+        console.log("The Computer Won The Game");
+    else 
+    console.log("This Game Is A Tie");
 }
+
+playGame();
